@@ -17,7 +17,7 @@ class AppSizes {
 
   // Heights, Weights and Radius
   static const spreadRadius = 1.0;
-  static const cardHeight = 405.0;
+  static const cardHeight = 200.0;
   static const lineHeight = 1.0;
   static const buttonBorderRadius = 40.0;
   static const buttonWidth = 120.0;

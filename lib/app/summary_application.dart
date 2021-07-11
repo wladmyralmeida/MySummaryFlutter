@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_summary/app/core/app_colors.dart';
 import 'package:my_summary/app/core/app_strings.dart';
 import 'package:my_summary/app/shared/models/summary_model.dart';
-import 'package:my_summary/app/shared/widgets/summary_card_widget.dart';
+import 'package:my_summary/app/modules/summary/summary_page.dart';
 
 class SummaryApplication extends StatelessWidget {
   @override
@@ -17,7 +17,7 @@ class SummaryApplication extends StatelessWidget {
           backgroundColor: AppColors.lightBlueColor
         )
       ),
-      home: SummaryCard(
+      home: SummaryPage(
         summary: SummaryModel(
             cdi: 10,
             gain: 100,
