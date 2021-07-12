@@ -28,45 +28,10 @@ class _SummaryPageState extends State<SummaryPage> {
     String query =
         ConnectGraphQl().getWealthSummaryByPK(clientID: widget.clientID);
 
-    final money = MoneyFormatter(
-      amount: summary.total.toDouble(),
-      settings: MoneyFormatterSettings(
-        symbol: 'R\$',
-        thousandSeparator: '.',
-        decimalSeparator: ',',
-        symbolAndNumberSeparator: ' ',
-        fractionDigits: 2,
-        // compactFormatType: CompactFormatType.sort,
-      ),
-    );
-
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 1,
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(right: AppSizes.twelve),
-              child: Text(
-                AppStrings.appTitle,
-                style: AppTextStyles.title,
-              ),
-            ),
-            Icon(
-              Icons.monetization_on,
-              size: 32,
-              color: AppColors.darkBlueColor,
-            ),
-          ],
-        ),
-      ),
-      body: Subscription(
+    return Subscription(
         key: Key("testSubscription"),
         options: SubscriptionOptions(document: gql(query)),
-        builder: (result) {
+        builder: (QueryResult result) {
           if (result.data == null) {
             return Center(
               child: CircularProgressIndicator(),
@@ -82,36 +47,71 @@ class _SummaryPageState extends State<SummaryPage> {
             summary.fromJson(
               result.data!['wealthSummary_by_pk'],
             );
-            return Padding(
-              padding: const EdgeInsets.all(AppSizes.sixteen),
-              child: Column(
-                children: [
-                  Center(
-                    child: Text(
-                      AppStrings.investedValue,
-                      style: AppTextStyles.subtitle,
+
+            final money = MoneyFormatter(
+              amount: summary.total.toDouble(),
+              settings: MoneyFormatterSettings(
+                symbol: 'R\$',
+                thousandSeparator: '.',
+                decimalSeparator: ',',
+                symbolAndNumberSeparator: ' ',
+                fractionDigits: 2,
+                // compactFormatType: CompactFormatType.sort,
+              ),
+            );
+
+            return Scaffold(
+              appBar: AppBar(
+                elevation: 1,
+                automaticallyImplyLeading: false,
+                centerTitle: true,
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(right: AppSizes.twelve),
+                      child: Text(
+                        AppStrings.appTitle,
+                        style: AppTextStyles.title,
+                      ),
                     ),
-                  ),
-                  Center(
-                    child: Text(
-                      money.output.symbolOnLeft,
-                      style: AppTextStyles.textMoneyBlue,
+                    Icon(
+                      Icons.monetization_on,
+                      size: 32,
+                      color: AppColors.darkBlueColor,
                     ),
-                  ),
-                  SizedBox(height: AppSizes.smallSpace),
-                  SummaryChartWidget(summary: summary),
-                  SizedBox(height: AppSizes.smallSpace),
-                  Divider(),
-                  SizedBox(height: AppSizes.regularSpace),
-                  Align(
-                      alignment: Alignment.bottomRight,
-                      child: ButtonWidget(seeMore: AppStrings.seeMore)),
-                ],
+                  ],
+                ),
+              ),
+              body: Padding(
+                padding: const EdgeInsets.all(AppSizes.sixteen),
+                child: Column(
+                  children: [
+                    Center(
+                      child: Text(
+                        AppStrings.investedValue,
+                        style: AppTextStyles.subtitle,
+                      ),
+                    ),
+                    Center(
+                      child: Text(
+                        money.output.symbolOnLeft,
+                        style: AppTextStyles.textMoneyBlue,
+                      ),
+                    ),
+                    SizedBox(height: AppSizes.smallSpace),
+                    SummaryChartWidget(summary: summary),
+                    SizedBox(height: AppSizes.smallSpace),
+                    Divider(),
+                    SizedBox(height: AppSizes.regularSpace),
+                    Align(
+                        alignment: Alignment.bottomRight,
+                        child: ButtonWidget(seeMore: AppStrings.seeMore)),
+                  ],
+                ),
               ),
             );
           }
-        },
-      ),
-    );
+        });
   }
 }
