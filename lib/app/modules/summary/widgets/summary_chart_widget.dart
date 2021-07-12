@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:money_formatter/money_formatter.dart';
+import 'package:my_summary/app/core/app_colors.dart';
 import 'package:my_summary/app/core/app_strings.dart';
 import 'package:my_summary/app/modules/summary/widgets/indicator.dart';
 import 'package:my_summary/app/shared/models/summary_model.dart';
@@ -20,7 +21,6 @@ class _SummaryChartWidgetState extends State<SummaryChartWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     final profitabilityFormatted = MoneyFormatter(
       amount: widget.summary.profitability,
       settings: MoneyFormatterSettings(
@@ -107,7 +107,7 @@ class _SummaryChartWidgetState extends State<SummaryChartWidget> {
               Indicator(
                 color: Color(0xfff8b250),
                 leadingText: AppStrings.cdi,
-                trailingText:cdiFormatted.output.symbolOnRight,
+                trailingText: cdiFormatted.output.symbolOnRight,
                 isSquare: false,
               ),
               SizedBox(
@@ -140,36 +140,41 @@ class _SummaryChartWidgetState extends State<SummaryChartWidget> {
       switch (i) {
         case 0:
           return PieChartSectionData(
-            color: const Color(0xff0293ee),
-            value: 40,
-            title: '40%',
+            color: AppColors.chartBlue,
+            value: widget.summary.profitability,
+            title: widget.summary.profitability.toStringAsFixed(2) +
+                AppStrings.percentSymbol,
             radius: radius,
             titleStyle: TextStyle(
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xffffffff)),
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: AppColors.cardBackground,
+            ),
           );
         case 1:
           return PieChartSectionData(
-            color: const Color(0xfff8b250),
-            value: 30,
-            title: '30%',
+            color: AppColors.chartOrange,
+            value: widget.summary.cdi,
+            title: widget.summary.cdi.toStringAsFixed(2) +
+                AppStrings.percentSymbol,
             radius: radius,
             titleStyle: TextStyle(
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xffffffff)),
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: AppColors.cardBackground,
+            ),
           );
         case 2:
           return PieChartSectionData(
-            color: const Color(0xff845bef),
-            value: 15,
-            title: '15%',
+            color: AppColors.chartViolet,
+            value: widget.summary.gain / 1000,
+            title: widget.summary.gain.toStringAsFixed(2),
             radius: radius,
             titleStyle: TextStyle(
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xffffffff)),
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: AppColors.cardBackground,
+            ),
           );
         default:
           throw Error();

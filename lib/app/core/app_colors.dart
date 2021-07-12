@@ -8,9 +8,7 @@ class AppColors {
   static final darkGreyColor = Color(0xFF606377);
   static final lightBlueColor = Color(0xFFE7EBF6);
   static final shadowColor = Color(0xFFBDBDBD);
-  static final dotColor = Color(0xFF9AA3BC);
-  static final lineColor = Color(0xFFCCD1DD);
-  static final shimmerDefaultColor = Color(0xFF373F45);
-  static final shimmerBaseColor = Color(0xFFE0E0E0);
-  static final shimmerHighlightColor = Color(0xFFF5F5F5);
+  static final chartViolet = Color(0xff845bef);
+  static final chartOrange = Color(0xfff8b250);
+  static final chartBlue = Color(0xff0293ee);
 }

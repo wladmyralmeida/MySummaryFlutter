@@ -5,7 +5,7 @@ class AppStrings {
   static const String profitability = 'Rentabilidade/mês';
   static const String cdi = 'CDI';
   static const String earnings = 'Ganhos/mês';
-  static const String others = 'Outros';
+  static const String total = 'Total';
   static const String seeMore = 'VER MAIS';
   static const String percentSymbol = '%';
   static const String errorMessage = 'Ocorreu um erro inesperado';
