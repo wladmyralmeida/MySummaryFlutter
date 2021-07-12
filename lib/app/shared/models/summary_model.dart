@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+part 'summary_model.g.dart';
+
 @JsonSerializable()
 class SummaryModel {
   final int id;
@@ -16,4 +18,9 @@ class SummaryModel {
       required this.hasHistory,
       required this.profitability,
       required this.total});
+
+  factory SummaryModel.fromJson(Map<String, dynamic> json) =>
+      _$SummaryModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SummaryModelToJson(this);
 }

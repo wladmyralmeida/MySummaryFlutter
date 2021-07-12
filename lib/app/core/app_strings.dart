@@ -1,8 +1,5 @@
 class AppStrings {
   static const String appTitle = 'Seu resumo';
-  static const String secretHeaderKey = "x-hasura-admin-secret";
-  static const String secretKey = 'secret';
-  static const String wealthSummaryKey = 'wealthSummary';
   static const String investedValue = 'Valor investido';
   static const String moneySymbol = 'R\$';
   static const String profitability = 'Rentabilidade/mês';
